@@ -2,23 +2,21 @@
 
 Android API 21+ / JVM. Requires JDK 17 to build; Kotlin 2.1.10, Gradle 8.11.1.
 Uses OkHttp, kotlinx.coroutines and kotlinx.serialization (pinned in build file).
-This package is distributed as source, **not published to Maven Central**.
+## Install from Maven Central
 
-Download https://osrmroute.com/downloads/osrmroute-kotlin-0.1.0.zip and extract
-into your project. In `settings.gradle.kts`:
+Add `mavenCentral()` to your dependency repositories, then in your app
+`build.gradle.kts`:
 
 ```kotlin
-include(":osrmroute-kotlin")
-project(":osrmroute-kotlin").projectDir = file("osrmroute-kotlin-0.1.0")
-// Ensure pluginManagement has gradlePluginPortal()/mavenCentral(), and
-// dependencyResolutionManagement has mavenCentral(). Align Kotlin plugin
-// versions across the host project and this module.
+dependencies {
+    implementation("com.osrmroute:osrmroute-kotlin:0.1.0")
+}
 ```
 
-In your app `build.gradle.kts`:
-```kotlin
-dependencies { implementation(project(":osrmroute-kotlin")) }
-```
+Public source: https://github.com/Mammadoff/osrmroute-kotlin
+
+A source ZIP is also available at
+https://osrmroute.com/downloads/osrmroute-kotlin-0.1.0.zip.
 
 Android requires `<uses-permission android:name="android.permission.INTERNET" />`.
 Call suspend methods from a lifecycle-managed coroutine; never block the UI thread.
