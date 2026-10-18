@@ -1,0 +1,7 @@
+.build/
+.swiftpm/
+.gradle/
+build/
+local.properties
+.env*
+*.asc
