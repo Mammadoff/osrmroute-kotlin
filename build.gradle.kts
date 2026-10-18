@@ -7,7 +7,7 @@ plugins {
     id("org.jetbrains.dokka") version "2.2.0"
 }
 group = "com.osrmroute"
-version = "0.1.0"
+version = "0.2.0"
 kotlin { jvmToolchain(17) }
 dependencies {
     api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")

@@ -131,7 +131,7 @@ class OSRMRoute(
 }
 
 /** Consume on OkHttp's I/O thread before resuming; cancellation closes an in-flight body. */
-private suspend fun <T> Call.awaitResult(consume: (Response) -> T): T = suspendCancellableCoroutine { continuation ->
+internal suspend fun <T> Call.awaitResult(consume: (Response) -> T): T = suspendCancellableCoroutine { continuation ->
     continuation.invokeOnCancellation { cancel() }
     enqueue(object : Callback {
         override fun onFailure(call: Call, e: IOException) {

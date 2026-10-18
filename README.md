@@ -1,4 +1,4 @@
-# OSRMRoute Kotlin SDK 0.1.0
+# OSRMRoute Kotlin SDK 0.2.0
 
 Android API 21+ / JVM. Requires JDK 17 to build; Kotlin 2.1.10, Gradle 8.11.1.
 Uses OkHttp, kotlinx.coroutines and kotlinx.serialization (pinned in build file).
@@ -9,14 +9,14 @@ Add `mavenCentral()` to your dependency repositories, then in your app
 
 ```kotlin
 dependencies {
-    implementation("com.osrmroute:osrmroute-kotlin:0.1.0")
+    implementation("com.osrmroute:osrmroute-kotlin:0.2.0")
 }
 ```
 
 Public source: https://github.com/Mammadoff/osrmroute-kotlin
 
 A source ZIP is also available at
-https://osrmroute.com/downloads/osrmroute-kotlin-0.1.0.zip.
+https://osrmroute.com/downloads/osrmroute-kotlin-0.2.0.zip.
 
 Android requires `<uses-permission android:name="android.permission.INTERNET" />`.
 Call suspend methods from a lifecycle-managed coroutine; never block the UI thread.
@@ -81,3 +81,19 @@ response with an incompatible payload is a decoding error, not a retry trigger.
 
 Server entitlements, credits, coverage and freshness are unchanged. No account
 or payment operation is performed by constructing the client.
+
+## Mobile Access (0.2.0)
+
+Version 0.2.0 includes `MobileAccess` for hosted device verification and
+short-lived tokens. Backend-based integrations remain supported. Android requires
+Google Play enrollment and an operator-connected verification credential; iOS
+requires production App Attest and a physical device. See
+https://osrmroute.com/docs/mobile#mobile-access for setup.
+
+Register an app in `/dashboard/mobile-apps`; use its public app ID, never a private
+API key. The broker returns a 300-second token after Play Integrity or App Attest.
+The linked API key retains its plan, billing, service and geographic limits.
+Mobile caps count all calls on that key. There is no extra free allowance.
+The SDK refreshes tokens before expiry without automatically replaying API calls.
+Tokens are bearer credentials: protect them in memory and never log them. This
+release does not provide per-request proof-of-possession binding.
